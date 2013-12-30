@@ -7,6 +7,7 @@
 //
 
 #import "DemoViewController.h"
+#import "MBInfinitePaingView.h"
 
 @interface DemoViewController ()
 
@@ -18,6 +19,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    MBInfinitePaingView *pagingView = [[MBInfinitePaingView alloc] initWithFrame:CGRectMake(0, 100, 320, 200)];
+    [pagingView setBackgroundColor:[UIColor lightGrayColor]];
+    
+    UIView *testItem = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    [testItem setBackgroundColor:[UIColor brownColor]];
+    
+    [pagingView addItem:testItem];
+    [self.view addSubview:pagingView];
 }
 
 - (void)didReceiveMemoryWarning

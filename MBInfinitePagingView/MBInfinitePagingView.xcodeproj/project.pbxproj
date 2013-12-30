@@ -22,6 +22,7 @@
 		FE03CB6E186FA95900A8A399 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE03CB6C186FA95900A8A399 /* InfoPlist.strings */; };
 		FE03CB70186FA95900A8A399 /* MBInfinitePagingViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FE03CB6F186FA95900A8A399 /* MBInfinitePagingViewTests.m */; };
 		FE03CB7B186FAE4400A8A399 /* MBInfinitePaingView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE03CB7A186FAE4400A8A399 /* MBInfinitePaingView.m */; };
+		FE146C7C18713A3200544F1D /* MBPagingViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FE146C7B18713A3200544F1D /* MBPagingViewItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		FE03CB6F186FA95900A8A399 /* MBInfinitePagingViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBInfinitePagingViewTests.m; sourceTree = "<group>"; };
 		FE03CB79186FAE4400A8A399 /* MBInfinitePaingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBInfinitePaingView.h; sourceTree = "<group>"; };
 		FE03CB7A186FAE4400A8A399 /* MBInfinitePaingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBInfinitePaingView.m; sourceTree = "<group>"; };
+		FE146C7A18713A3200544F1D /* MBPagingViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPagingViewItem.h; sourceTree = "<group>"; };
+		FE146C7B18713A3200544F1D /* MBPagingViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPagingViewItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 				FE03CB5A186FA95900A8A399 /* DemoViewController.m */,
 				FE03CB79186FAE4400A8A399 /* MBInfinitePaingView.h */,
 				FE03CB7A186FAE4400A8A399 /* MBInfinitePaingView.m */,
+				FE146C7A18713A3200544F1D /* MBPagingViewItem.h */,
+				FE146C7B18713A3200544F1D /* MBPagingViewItem.m */,
 				FE03CB5C186FA95900A8A399 /* Images.xcassets */,
 				FE03CB4B186FA95900A8A399 /* Supporting Files */,
 			);
@@ -258,6 +263,7 @@
 				FE03CB55186FA95900A8A399 /* AppDelegate.m in Sources */,
 				FE03CB51186FA95900A8A399 /* main.m in Sources */,
 				FE03CB7B186FAE4400A8A399 /* MBInfinitePaingView.m in Sources */,
+				FE146C7C18713A3200544F1D /* MBPagingViewItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

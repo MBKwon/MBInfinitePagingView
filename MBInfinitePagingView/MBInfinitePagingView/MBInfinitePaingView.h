@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class MBPagingViewItem;
+
 @interface MBInfinitePaingView : UIView
+
+@property (assign, nonatomic) NSInteger viewIndex;
+@property (assign, nonatomic) NSInteger pagingLenth;
+@property (strong, nonatomic) NSMutableArray *scrollItemArray;
+
+-(void)addItem:(MBPagingViewItem *)item;
+-(void)addItemsWithArray:(NSArray *)itemArray;
+-(void)removeItem:(MBPagingViewItem *)item;
+-(void)removeAllItems;
 
 @end
