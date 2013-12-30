@@ -1,18 +1,18 @@
 //
-//  ViewController.m
+//  DemoViewController.m
 //  MBInfinitePagingView
 //
 //  Created by MB KWON on 2013. 12. 29..
 //  Copyright (c) 2013년 Semtle_men. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "DemoViewController.h"
 
-@interface ViewController ()
+@interface DemoViewController ()
 
 @end
 
-@implementation ViewController
+@implementation DemoViewController
 
 - (void)viewDidLoad
 {

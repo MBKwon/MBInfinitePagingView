@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MBInfinitePaingView.h
 //  MBInfinitePagingView
 //
 //  Created by MB KWON on 2013. 12. 29..
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface MBInfinitePaingView : UIView
 
 @end

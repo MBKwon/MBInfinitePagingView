@@ -14,13 +14,14 @@
 		FE03CB51186FA95900A8A399 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FE03CB50186FA95900A8A399 /* main.m */; };
 		FE03CB55186FA95900A8A399 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FE03CB54186FA95900A8A399 /* AppDelegate.m */; };
 		FE03CB58186FA95900A8A399 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE03CB56186FA95900A8A399 /* Main.storyboard */; };
-		FE03CB5B186FA95900A8A399 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE03CB5A186FA95900A8A399 /* ViewController.m */; };
+		FE03CB5B186FA95900A8A399 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE03CB5A186FA95900A8A399 /* DemoViewController.m */; };
 		FE03CB5D186FA95900A8A399 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE03CB5C186FA95900A8A399 /* Images.xcassets */; };
 		FE03CB64186FA95900A8A399 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE03CB63186FA95900A8A399 /* XCTest.framework */; };
 		FE03CB65186FA95900A8A399 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE03CB44186FA95900A8A399 /* Foundation.framework */; };
 		FE03CB66186FA95900A8A399 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE03CB48186FA95900A8A399 /* UIKit.framework */; };
 		FE03CB6E186FA95900A8A399 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE03CB6C186FA95900A8A399 /* InfoPlist.strings */; };
 		FE03CB70186FA95900A8A399 /* MBInfinitePagingViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FE03CB6F186FA95900A8A399 /* MBInfinitePagingViewTests.m */; };
+		FE03CB7B186FAE4400A8A399 /* MBInfinitePaingView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE03CB7A186FAE4400A8A399 /* MBInfinitePaingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +46,16 @@
 		FE03CB53186FA95900A8A399 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FE03CB54186FA95900A8A399 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FE03CB57186FA95900A8A399 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FE03CB59186FA95900A8A399 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FE03CB5A186FA95900A8A399 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FE03CB59186FA95900A8A399 /* DemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		FE03CB5A186FA95900A8A399 /* DemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		FE03CB5C186FA95900A8A399 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FE03CB62186FA95900A8A399 /* MBInfinitePagingViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MBInfinitePagingViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE03CB63186FA95900A8A399 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		FE03CB6B186FA95900A8A399 /* MBInfinitePagingViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MBInfinitePagingViewTests-Info.plist"; sourceTree = "<group>"; };
 		FE03CB6D186FA95900A8A399 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FE03CB6F186FA95900A8A399 /* MBInfinitePagingViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBInfinitePagingViewTests.m; sourceTree = "<group>"; };
+		FE03CB79186FAE4400A8A399 /* MBInfinitePaingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBInfinitePaingView.h; sourceTree = "<group>"; };
+		FE03CB7A186FAE4400A8A399 /* MBInfinitePaingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBInfinitePaingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +118,10 @@
 				FE03CB53186FA95900A8A399 /* AppDelegate.h */,
 				FE03CB54186FA95900A8A399 /* AppDelegate.m */,
 				FE03CB56186FA95900A8A399 /* Main.storyboard */,
-				FE03CB59186FA95900A8A399 /* ViewController.h */,
-				FE03CB5A186FA95900A8A399 /* ViewController.m */,
+				FE03CB59186FA95900A8A399 /* DemoViewController.h */,
+				FE03CB5A186FA95900A8A399 /* DemoViewController.m */,
+				FE03CB79186FAE4400A8A399 /* MBInfinitePaingView.h */,
+				FE03CB7A186FAE4400A8A399 /* MBInfinitePaingView.m */,
 				FE03CB5C186FA95900A8A399 /* Images.xcassets */,
 				FE03CB4B186FA95900A8A399 /* Supporting Files */,
 			);
@@ -141,7 +146,7 @@
 				FE03CB6A186FA95900A8A399 /* Supporting Files */,
 			);
 			path = MBInfinitePagingViewTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		FE03CB6A186FA95900A8A399 /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -249,9 +254,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE03CB5B186FA95900A8A399 /* ViewController.m in Sources */,
+				FE03CB5B186FA95900A8A399 /* DemoViewController.m in Sources */,
 				FE03CB55186FA95900A8A399 /* AppDelegate.m in Sources */,
 				FE03CB51186FA95900A8A399 /* main.m in Sources */,
+				FE03CB7B186FAE4400A8A399 /* MBInfinitePaingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +466,7 @@
 				FE03CB75186FA95900A8A399 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FE03CB76186FA95900A8A399 /* Build configuration list for PBXNativeTarget "MBInfinitePagingViewTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +475,7 @@
 				FE03CB78186FA95900A8A399 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
