@@ -8,6 +8,7 @@
 
 #import "DemoViewController.h"
 #import "MBInfinitePaingView.h"
+#import "MBPagingViewItem.h"
 
 @interface DemoViewController ()
 
@@ -23,6 +24,16 @@
     [pagingView setBackgroundColor:[UIColor lightGrayColor]];
     
     UIView *testItem = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    [testItem setBackgroundColor:[UIColor brownColor]];
+    
+    [pagingView addItem:testItem];
+    
+    testItem = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    [testItem setBackgroundColor:[UIColor brownColor]];
+    
+    [pagingView addItem:testItem];
+    
+    testItem = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     [testItem setBackgroundColor:[UIColor brownColor]];
     
     [pagingView addItem:testItem];

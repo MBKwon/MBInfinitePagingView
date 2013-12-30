@@ -7,6 +7,7 @@
 //
 
 #import "MBPagingViewItem.h"
+#import "MBInfinitePaingView.h"
 
 @implementation MBPagingViewItem
 
@@ -19,23 +20,51 @@
     return self;
 }
 
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.onTouch = YES;
+    if (self.onTouch == NO) {
+        
+        MBInfinitePaingView *pagingView = (MBInfinitePaingView *) self.superview;
+        NSLog(@"%@", [[self.superview class] description]);
+        [pagingView prepareForScrolling];
+        self.onTouch = YES;
+    }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.onTouch = NO;
+    if (self.onTouch == YES) {
+        
+        MBInfinitePaingView *pagingView = (MBInfinitePaingView *) self.superview;
+        
+        CGPoint touchLocation = [self getTouchLocation:touches];
+        NSInteger leftCenter = pagingView.center.x/2;
+        NSInteger rightCenter = pagingView.frame.size.width-leftCenter;
+        
+        
+        if (touchLocation.x < leftCenter) {
+            [pagingView scrollToLeft];
+        } else if (touchLocation.x > rightCenter) {
+            [pagingView scrollToRight];
+        } else {
+            CGPoint center = pagingView.center;
+            center.y = self.center.y;
+            
+            [UIView animateWithDuration:0.5 animations:^{
+                [self setCenter:center];
+            }];
+        }
+        self.onTouch = NO;
+    }
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -43,14 +72,30 @@
     if (self.onTouch) {
         NSLog(@"on Touch");
         
-        UITouch *touch = [touches anyObject];
-        CGPoint touchLocation = [touch locationInView:self.superview];
-        touchLocation.y = self.center.y;
+        MBInfinitePaingView *pagingView = (MBInfinitePaingView *) self.superview;
+        CGPoint touchLocation = [self getTouchLocation:touches];
+        
+        CGPoint leftItemLocation = touchLocation;
+        leftItemLocation.x -= self.frame.size.width;
+        
+        CGPoint rightItemLocation = touchLocation;
+        rightItemLocation.x += self.frame.size.width;
         
         [UIView animateWithDuration:0.1 animations:^{
             [self setCenter:touchLocation];
+            [pagingView.leftItem setCenter:leftItemLocation];
+            [pagingView.rightItem setCenter:rightItemLocation];
         }];
     }
+}
+
+-(CGPoint)getTouchLocation:(NSSet *)touches
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint touchLocation = [touch locationInView:self.superview];
+    touchLocation.y = self.center.y;
+    
+    return touchLocation;
 }
 
 @end

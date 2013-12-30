@@ -37,14 +37,30 @@
 #pragma mark - make a MBInfinitePaingView
 -(void)initializeInfinitePaingView
 {
+    self.currentIndex = 0;
     if ([self.scrollItemArray count] == 1) {
-        UIView *firstObject = [self.scrollItemArray objectAtIndex:0];
+        
+        MBPagingViewItem *firstObject = [self.scrollItemArray objectAtIndex:self.currentIndex];
+        [self.scrollItemArray addObject:firstObject];
+        [self.scrollItemArray addObject:firstObject];
+        
+        [firstObject setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         [self addSubview:firstObject];
-        [self.scrollItemArray addObject:[self.scrollItemArray objectAtIndex:0]];
+        
+    } else if ([self.scrollItemArray count] == 2) {
+        
+        MBPagingViewItem *firstObject = [self.scrollItemArray objectAtIndex:self.currentIndex];
+        [self.scrollItemArray addObject:firstObject];
+        
+        MBPagingViewItem *secondObject = [self.scrollItemArray objectAtIndex:self.currentIndex+1];
+        [self.scrollItemArray addObject:secondObject];
+        
+        [firstObject setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        [self addSubview:firstObject];
         
     } else {
         
-        UIView *firstObject = [self.scrollItemArray objectAtIndex:0];
+        MBPagingViewItem *firstObject = [self.scrollItemArray objectAtIndex:self.currentIndex];
         [firstObject setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)];
         [self addSubview:firstObject];
     }
@@ -55,23 +71,68 @@
 #pragma mark - scroll method
 -(void)scrollToLeft
 {
-    [self scrollViewWithIndex:-1];
+    [self scrollViewWithIndex:1];
 }
 
 -(void)scrollToRight
 {
-    [self scrollViewWithIndex:1];
+    [self scrollViewWithIndex:-1];
 }
 
 -(void)scrollViewWithIndex:(NSInteger)index
 {
+    MBPagingViewItem *currentItem = [self.scrollItemArray objectAtIndex:self.currentIndex%self.scrollItemArray.count];
     
+    
+    if (index > 0) {
+        
+        
+        [UIView animateWithDuration:0.1 animations:^{
+            [currentItem setFrame:CGRectMake(-(self.frame.size.width), 0, self.frame.size.width, self.frame.size.height)];
+            [self.rightItem setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        }];
+        
+    } else if (index < 0) {
+        
+        [UIView animateWithDuration:0.1 animations:^{
+            [currentItem setFrame:CGRectMake(self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
+            [self.leftItem setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        }];
+        
+    } else {
+        
+        [UIView animateWithDuration:0.1 animations:^{
+            [currentItem setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+            [self.leftItem setFrame:CGRectMake(-(self.frame.size.width), 0, self.frame.size.width, self.frame.size.height)];
+            [self.rightItem setFrame:CGRectMake(self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
+        }];
+    }
+    
+    self.leftItem = nil;
+    self.rightItem = nil;
+    
+    self.currentIndex = self.currentIndex+index;
+}
+
+-(void)prepareForScrolling
+{
+    NSInteger leftIndex = ((self.currentIndex+self.scrollItemArray.count)-1)%self.scrollItemArray.count;
+    NSInteger rightIndex = (self.currentIndex+1)%self.scrollItemArray.count;
+    
+    self.leftItem = [self.scrollItemArray objectAtIndex:leftIndex];
+    
+    [self.leftItem setFrame:CGRectMake(-(self.frame.size.width), 0, self.frame.size.width, self.frame.size.height)];
+    [self addSubview:self.leftItem];
+    
+    self.rightItem = [self.scrollItemArray objectAtIndex:rightIndex];
+    [self.rightItem setFrame:CGRectMake(self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
+    [self addSubview:self.rightItem];
 }
 
 
 
 #pragma mark - manage items in MBInfinitePaingView (add)
--(void)addItem:(MBPagingViewItem *)item
+-(void)addItem:(UIView *)item
 {
     if (self.scrollItemArray == nil) {
         
@@ -91,8 +152,8 @@
         self.scrollItemArray = [NSMutableArray new];
     }
     
-    for (MBPagingViewItem *item in itemArray) {
-        if ([item isKindOfClass:[MBPagingViewItem class]] != NO) {
+    for (UIView *item in itemArray) {
+        if ([item isKindOfClass:[UIView class]] != NO) {
             NSLog(@"ERROR : item that isn't a subclass of MBPagingViewItem is in a array");
             continue;
         } else {
@@ -104,7 +165,7 @@
 
 
 #pragma mark - manage items in MBInfinitePaingView (remove)
--(void)removeItem:(MBPagingViewItem *)item
+-(void)removeItem:(UIView *)item
 {
     if (self.scrollItemArray == nil) {
         return;
