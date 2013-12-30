@@ -27,17 +27,9 @@
     [testItem setBackgroundColor:[UIColor brownColor]];
     
     [pagingView addItem:testItem];
-    
-    testItem = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    [testItem setBackgroundColor:[UIColor brownColor]];
-    
-    [pagingView addItem:testItem];
-    
-    testItem = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    [testItem setBackgroundColor:[UIColor brownColor]];
-    
-    [pagingView addItem:testItem];
     [self.view addSubview:pagingView];
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:pagingView selector:@selector(scrollToLeft) userInfo:nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning

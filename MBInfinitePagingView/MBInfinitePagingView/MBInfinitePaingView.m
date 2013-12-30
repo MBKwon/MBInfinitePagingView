@@ -41,8 +41,10 @@
     if ([self.scrollItemArray count] == 1) {
         
         MBPagingViewItem *firstObject = [self.scrollItemArray objectAtIndex:self.currentIndex];
-        [self.scrollItemArray addObject:firstObject];
-        [self.scrollItemArray addObject:firstObject];
+        
+        [self.scrollItemArray addObject:[self getDuplicatedView:firstObject]];
+        [self.scrollItemArray addObject:[self getDuplicatedView:firstObject]];
+        
         
         [firstObject setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         [self addSubview:firstObject];
@@ -50,15 +52,16 @@
     } else if ([self.scrollItemArray count] == 2) {
         
         MBPagingViewItem *firstObject = [self.scrollItemArray objectAtIndex:self.currentIndex];
-        [self.scrollItemArray addObject:firstObject];
-        
         MBPagingViewItem *secondObject = [self.scrollItemArray objectAtIndex:self.currentIndex+1];
-        [self.scrollItemArray addObject:secondObject];
+        
+        [self.scrollItemArray addObject:[self getDuplicatedView:firstObject]];
+        [self.scrollItemArray addObject:[self getDuplicatedView:secondObject]];
+        
         
         [firstObject setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         [self addSubview:firstObject];
         
-    } else {
+    } else if ([self.scrollItemArray count] > 2) {
         
         MBPagingViewItem *firstObject = [self.scrollItemArray objectAtIndex:self.currentIndex];
         [firstObject setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)];
@@ -66,16 +69,26 @@
     }
 }
 
+-(MBPagingViewItem *)getDuplicatedView:(MBPagingViewItem *)object
+{
+    MBPagingViewItem *pagingItem = [[MBPagingViewItem alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    [pagingItem copyWithPagingViewitem:object];
+    
+    return pagingItem;
+}
+
 
 
 #pragma mark - scroll method
 -(void)scrollToLeft
 {
+    [self prepareForScrolling];
     [self scrollViewWithIndex:1];
 }
 
 -(void)scrollToRight
 {
+    [self prepareForScrolling];
     [self scrollViewWithIndex:-1];
 }
 
@@ -141,6 +154,7 @@
     
     MBPagingViewItem *pagingItem = [[MBPagingViewItem alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     [item setCenter:CGPointMake(pagingItem.frame.size.width/2, pagingItem.frame.size.height/2)];
+    [pagingItem setBackgroundColor:[UIColor clearColor]];
     [pagingItem addSubview:item];
     [self.scrollItemArray addObject:pagingItem];
 }

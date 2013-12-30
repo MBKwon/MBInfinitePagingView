@@ -12,4 +12,6 @@
 
 @property (assign, nonatomic) BOOL onTouch;
 
+-(void)copyWithPagingViewitem:(MBPagingViewItem *)item;
+
 @end
