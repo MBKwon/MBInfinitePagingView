@@ -103,7 +103,7 @@
     }
 }
 
--(void)scrollViewWithIndex:(NSInteger)index
+-(void)scrollViewWithIndex:(MBPaingDirection)index
 {
     MBPagingViewItem *currentItem = [self.scrollItemArray objectAtIndex:self.currentIndex%self.scrollItemArray.count];
     
@@ -111,46 +111,60 @@
     if (index > 0) {
         
         
-        [UIView animateWithDuration:0.4 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
+            [self setUserInteractionEnabled:NO];
             [currentItem setFrame:CGRectMake(-(self.frame.size.width), 0, self.frame.size.width, self.frame.size.height)];
             [self.rightItem setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+            [self setUserInteractionEnabled:YES];
+            
+            self.leftItem = nil;
+            self.rightItem = nil;
         }];
         
     } else if (index < 0) {
         
-        [UIView animateWithDuration:0.4 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
+            [self setUserInteractionEnabled:NO];
             [currentItem setFrame:CGRectMake(self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
             [self.leftItem setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+            [self setUserInteractionEnabled:YES];
+            
+            self.leftItem = nil;
+            self.rightItem = nil;
         }];
         
     } else {
         
-        [UIView animateWithDuration:0.4 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
+            [self setUserInteractionEnabled:NO];
             [currentItem setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
             [self.leftItem setFrame:CGRectMake(-(self.frame.size.width), 0, self.frame.size.width, self.frame.size.height)];
             [self.rightItem setFrame:CGRectMake(self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
+            [self setUserInteractionEnabled:YES];
+            
+            self.leftItem = nil;
+            self.rightItem = nil;
         }];
     }
-    
-    self.leftItem = nil;
-    self.rightItem = nil;
-    
-    self.currentIndex = self.currentIndex+index;
+    self.currentIndex += index;
+    self.currentIndex %= self.scrollItemArray.count;
 }
 
 -(void)prepareForScrolling
 {
-    NSInteger leftIndex = ((self.currentIndex+self.scrollItemArray.count)-1)%self.scrollItemArray.count;
-    NSInteger rightIndex = (self.currentIndex+1)%self.scrollItemArray.count;
-    
-    self.leftItem = [self.scrollItemArray objectAtIndex:leftIndex];
-    
-    [self.leftItem setFrame:CGRectMake(-(self.frame.size.width), 0, self.frame.size.width, self.frame.size.height)];
-    [self addSubview:self.leftItem];
-    
-    self.rightItem = [self.scrollItemArray objectAtIndex:rightIndex];
-    [self.rightItem setFrame:CGRectMake(self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
-    [self addSubview:self.rightItem];
+    NSLog(@"current index : %d", self.currentIndex);
+    if (self.leftItem == nil && self.rightItem == nil) {
+        
+        NSInteger leftIndex = ((self.currentIndex+self.scrollItemArray.count)-1)%self.scrollItemArray.count;
+        self.leftItem = [self.scrollItemArray objectAtIndex:leftIndex];
+        [self.leftItem setFrame:CGRectMake(-(self.frame.size.width), 0, self.frame.size.width, self.frame.size.height)];
+        [self addSubview:self.leftItem];
+        
+        NSInteger rightIndex = (self.currentIndex+1)%self.scrollItemArray.count;
+        self.rightItem = [self.scrollItemArray objectAtIndex:rightIndex];
+        [self.rightItem setFrame:CGRectMake(self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
+        [self addSubview:self.rightItem];
+    }
 }
 
 
@@ -165,6 +179,7 @@
     
     MBPagingViewItem *pagingItem = [[MBPagingViewItem alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     [item setCenter:CGPointMake(pagingItem.frame.size.width/2, pagingItem.frame.size.height/2)];
+    
     [pagingItem setBackgroundColor:[UIColor clearColor]];
     [pagingItem addSubview:item];
     [self.scrollItemArray addObject:pagingItem];

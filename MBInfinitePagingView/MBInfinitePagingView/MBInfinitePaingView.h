@@ -10,7 +10,8 @@
 
 typedef enum MBPaingDirection {
     MBPaingDirectionLeft = -1,
-    MBPaingDirectionRight = 1
+    MBPaingDirectionCenter,
+    MBPaingDirectionRight
 } MBPaingDirection;
 
 @class MBPagingViewItem;

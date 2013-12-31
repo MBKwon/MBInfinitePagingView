@@ -11,5 +11,6 @@
 @interface MBPagingViewItem : UIView <NSCopying>
 
 @property (assign, nonatomic) BOOL onTouch;
+@property (assign, nonatomic) CGPoint previousLocation;
 
 @end
