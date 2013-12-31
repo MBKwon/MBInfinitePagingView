@@ -18,8 +18,8 @@ typedef enum MBPaingDirection {
 @interface MBInfinitePaingView : UIView
 
 
+@property (assign, nonatomic) BOOL onTouch;
 @property (assign, nonatomic) MBPaingDirection currentDirection;
-@property (strong, nonatomic) NSTimer *repeatsTimer;
 
 @property (assign, nonatomic) NSInteger currentIndex;
 @property (assign, nonatomic) NSInteger pagingLenth;

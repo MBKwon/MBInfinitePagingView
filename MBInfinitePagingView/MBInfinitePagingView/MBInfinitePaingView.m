@@ -38,6 +38,7 @@
 -(void)initializeInfinitePaingView
 {
     self.currentIndex = 0;
+    self.onTouch = NO;
     if ([self.scrollItemArray count] == 1) {
         
         MBPagingViewItem *firstObject = [self.scrollItemArray objectAtIndex:self.currentIndex];
@@ -71,7 +72,6 @@
 
 
 #pragma mark - scroll method
-
 -(void)scrollToDirection:(MBPaingDirection)direction
 {
     if (direction <= 1 && direction >= -1) {
@@ -79,7 +79,10 @@
         [self scrollToDirection:direction withTimeInterval:1.0 repeats:NO];
     } else {
         
-        [self scrollToDirection:self.currentDirection withTimeInterval:1.0 repeats:NO];
+        if (self.onTouch == NO) {
+            
+            [self scrollToDirection:self.currentDirection withTimeInterval:1.0 repeats:NO];
+        }
     }
 }
 
@@ -95,8 +98,8 @@
         if (direction <= 1 && direction >= -1) {
             
             self.currentDirection = direction;
+            [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(scrollToDirection:) userInfo:NO repeats:YES];
         }
-        self.repeatsTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(scrollToDirection:) userInfo:NO repeats:YES];
     }
 }
 

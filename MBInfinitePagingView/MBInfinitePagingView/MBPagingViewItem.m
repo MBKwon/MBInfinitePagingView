@@ -54,6 +54,8 @@
     if (self.onTouch == NO) {
         
         MBInfinitePaingView *pagingView = (MBInfinitePaingView *) self.superview;
+        [pagingView setOnTouch:YES];
+        
         NSLog(@"%@", [[self.superview class] description]);
         [pagingView prepareForScrolling];
         self.onTouch = YES;
@@ -65,6 +67,7 @@
     if (self.onTouch == YES) {
         
         MBInfinitePaingView *pagingView = (MBInfinitePaingView *) self.superview;
+        [pagingView setOnTouch:NO];
         
         CGPoint touchLocation = [self getTouchLocation:touches];
         NSInteger leftCenter = pagingView.center.x/2;
