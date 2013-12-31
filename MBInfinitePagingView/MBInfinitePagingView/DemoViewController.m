@@ -29,7 +29,7 @@
     [pagingView addItem:testItem];
     [self.view addSubview:pagingView];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.5 target:pagingView selector:@selector(scrollToLeft) userInfo:nil repeats:YES];
+    [pagingView scrollToDirection:MBPaingDirectionRight withTimeInterval:0.5 repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning

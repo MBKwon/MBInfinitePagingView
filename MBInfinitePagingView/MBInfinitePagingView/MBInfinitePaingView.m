@@ -42,8 +42,8 @@
         
         MBPagingViewItem *firstObject = [self.scrollItemArray objectAtIndex:self.currentIndex];
         
-        [self.scrollItemArray addObject:[self getDuplicatedView:firstObject]];
-        [self.scrollItemArray addObject:[self getDuplicatedView:firstObject]];
+        [self.scrollItemArray addObject:[firstObject copy]];
+        [self.scrollItemArray addObject:[firstObject copy]];
         
         
         [firstObject setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
@@ -54,8 +54,8 @@
         MBPagingViewItem *firstObject = [self.scrollItemArray objectAtIndex:self.currentIndex];
         MBPagingViewItem *secondObject = [self.scrollItemArray objectAtIndex:self.currentIndex+1];
         
-        [self.scrollItemArray addObject:[self getDuplicatedView:firstObject]];
-        [self.scrollItemArray addObject:[self getDuplicatedView:secondObject]];
+        [self.scrollItemArray addObject:[firstObject copy]];
+        [self.scrollItemArray addObject:[secondObject copy]];
         
         
         [firstObject setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
@@ -69,27 +69,35 @@
     }
 }
 
--(MBPagingViewItem *)getDuplicatedView:(MBPagingViewItem *)object
-{
-    MBPagingViewItem *pagingItem = [[MBPagingViewItem alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    [pagingItem copyWithPagingViewitem:object];
-    
-    return pagingItem;
-}
-
-
 
 #pragma mark - scroll method
--(void)scrollToLeft
+
+-(void)scrollToDirection:(MBPaingDirection)direction
 {
-    [self prepareForScrolling];
-    [self scrollViewWithIndex:1];
+    if (direction <= 1 && direction >= -1) {
+        
+        [self scrollToDirection:direction withTimeInterval:1.0 repeats:NO];
+    } else {
+        
+        [self scrollToDirection:self.currentDirection withTimeInterval:1.0 repeats:NO];
+    }
 }
 
--(void)scrollToRight
+-(void)scrollToDirection:(MBPaingDirection)direction withTimeInterval:(NSTimeInterval)timeInterval repeats:(BOOL)yesOrNo
 {
-    [self prepareForScrolling];
-    [self scrollViewWithIndex:-1];
+    if (yesOrNo == NO) {
+        
+        [self prepareForScrolling];
+        [self scrollViewWithIndex:direction];
+        
+    } else {
+        
+        if (direction <= 1 && direction >= -1) {
+            
+            self.currentDirection = direction;
+        }
+        self.repeatsTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(scrollToDirection:) userInfo:NO repeats:YES];
+    }
 }
 
 -(void)scrollViewWithIndex:(NSInteger)index
@@ -100,21 +108,21 @@
     if (index > 0) {
         
         
-        [UIView animateWithDuration:0.1 animations:^{
+        [UIView animateWithDuration:0.4 animations:^{
             [currentItem setFrame:CGRectMake(-(self.frame.size.width), 0, self.frame.size.width, self.frame.size.height)];
             [self.rightItem setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         }];
         
     } else if (index < 0) {
         
-        [UIView animateWithDuration:0.1 animations:^{
+        [UIView animateWithDuration:0.4 animations:^{
             [currentItem setFrame:CGRectMake(self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
             [self.leftItem setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         }];
         
     } else {
         
-        [UIView animateWithDuration:0.1 animations:^{
+        [UIView animateWithDuration:0.4 animations:^{
             [currentItem setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
             [self.leftItem setFrame:CGRectMake(-(self.frame.size.width), 0, self.frame.size.width, self.frame.size.height)];
             [self.rightItem setFrame:CGRectMake(self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];

@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MBPagingViewItem : UIView
+@interface MBPagingViewItem : UIView <NSCopying>
 
 @property (assign, nonatomic) BOOL onTouch;
-
--(void)copyWithPagingViewitem:(MBPagingViewItem *)item;
 
 @end

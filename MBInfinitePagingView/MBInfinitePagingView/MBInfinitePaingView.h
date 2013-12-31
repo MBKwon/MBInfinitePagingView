@@ -8,21 +8,30 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum MBPaingDirection {
+    MBPaingDirectionLeft = -1,
+    MBPaingDirectionRight = 1
+} MBPaingDirection;
+
 @class MBPagingViewItem;
 
 @interface MBInfinitePaingView : UIView
+
+
+@property (assign, nonatomic) MBPaingDirection currentDirection;
+@property (strong, nonatomic) NSTimer *repeatsTimer;
 
 @property (assign, nonatomic) NSInteger currentIndex;
 @property (assign, nonatomic) NSInteger pagingLenth;
 @property (strong, nonatomic) NSMutableArray *scrollItemArray;
 
+
 @property (strong, nonatomic) MBPagingViewItem *leftItem;
 @property (strong, nonatomic) MBPagingViewItem *rightItem;
 
 -(void)prepareForScrolling;
--(void)scrollToLeft;
--(void)scrollToRight;
-
+-(void)scrollToDirection:(MBPaingDirection)direction;
+-(void)scrollToDirection:(MBPaingDirection)direction withTimeInterval:(NSTimeInterval)timeInterval repeats:(BOOL)yesOrNo;
 -(void)addItem:(UIView *)item;
 -(void)addItemsWithArray:(NSArray *)itemArray;
 -(void)removeItem:(UIView *)item;

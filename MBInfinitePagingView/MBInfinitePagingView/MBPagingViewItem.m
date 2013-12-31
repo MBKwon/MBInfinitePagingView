@@ -26,14 +26,26 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
+    UIView *testView = [[UIView alloc] initWithFrame:CGRectMake(30, 30, 30, 30)];
+    [testView setBackgroundColor:[UIColor redColor]];
+    [self addSubview:testView];
 }
  */
 
--(void)copyWithPagingViewitem:(MBPagingViewItem *)item
+-(id)copyWithZone:(NSZone *)zone
 {
-    for (UIView *subView in item.subviews) {
-        [self addSubview:subView];
+    MBPagingViewItem *object = [[MBPagingViewItem alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    [object setBackgroundColor:[UIColor clearColor]];
+    NSArray *copiedSubviews = [[NSArray alloc] initWithArray:[self.subviews copyWithZone:zone]];
+ 
+    for (UIView *subview in copiedSubviews) {
+        
+        //this line is for Deep copy a view.
+        UIView *copyOfView = (UIView *) [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:subview]];
+        [object addSubview:copyOfView];
     }
+    
+    return object;
 }
 
 
@@ -60,9 +72,9 @@
         
         
         if (touchLocation.x < leftCenter) {
-            [pagingView scrollToLeft];
+            [pagingView scrollToDirection:MBPaingDirectionLeft];
         } else if (touchLocation.x > rightCenter) {
-            [pagingView scrollToRight];
+            [pagingView scrollToDirection:MBPaingDirectionRight];
         } else {
             CGPoint center = pagingView.center;
             center.y = self.center.y;
