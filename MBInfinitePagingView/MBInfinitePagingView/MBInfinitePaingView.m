@@ -33,6 +33,12 @@
 }
 
 
+#pragma mark - gesture delegate
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return NO;
+}
+
 
 #pragma mark - make a MBInfinitePaingView
 -(void)initializeInfinitePaingView

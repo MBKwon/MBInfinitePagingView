@@ -16,7 +16,7 @@ typedef enum MBPaingDirection {
 
 @class MBPagingViewItem;
 
-@interface MBInfinitePaingView : UIView
+@interface MBInfinitePaingView : UIView <UIGestureRecognizerDelegate>
 
 
 @property (assign, nonatomic) BOOL onTouch;
